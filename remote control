@@ -1,0 +1,57 @@
+//This will be the code that we control the 8 servos with the potentiometers
+
+#include <Servo.h>
+
+Servo myservo1;
+Servo myservo2;
+Servo myservo3;
+Servo myservo4;
+Servo myservo5;
+Servo myservo6;
+Servo myservo7;
+Servo myservo8;
+
+int potpin1 = 0;  // analog pin used to connect the potentiometer
+int potpin2 = 1;
+int potpin3 = 2;
+int potpin4 = 3;
+int potpin5 = 4;
+int potpin6 = 5;
+int potpin7 = 6;
+int potpin8 = 7;
+
+int val1;    // variable to read the value from the analog pin
+int val2;
+int val3;
+int val4;
+int val5;
+int val6;
+int val7;
+int val8;
+
+void setup()
+{
+ //put in servo controller code here
+}
+
+void loop() 
+{ 
+  val1 = analogRead(potpin1);            // reads the value of the potentiometer (value between 0 and 1023)
+  val2 = analogRead(potpin2);
+  val3 = analogRead(potpin3);
+  val4 = analogRead(potpin4);
+  val5 = analogRead(potpin5);
+  val6 = analogRead(potpin6);
+  val7 = analogRead(potpin7);
+  val8 = analogRead(potpin8);
+  
+  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180) 
+  val = map(val, 0, 1023, 0, 180); 
+  val = map(val, 0, 1023, 0, 180); 
+  val = map(val, 0, 1023, 0, 180); 
+  val = map(val, 0, 1023, 0, 180); 
+  val = map(val, 0, 1023, 0, 180); 
+  val = map(val, 0, 1023, 0, 180); 
+  myservo.write(val);                  // sets the servo position according to the scaled value 
+  delay(15);                           // waits for the servo to get there 
+} 
