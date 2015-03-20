@@ -1,6 +1,6 @@
 //This will be the code that we control the 8 servos with the potentiometers
-
 #include <Servo.h>
+
 
 Servo myservo1;
 Servo myservo2;
@@ -11,7 +11,7 @@ Servo myservo6;
 Servo myservo7;
 Servo myservo8;
 
-int potpin1 = 0;  // analog pin used to connect the potentiometer
+int potpin1 = 0; // analog pin used to connect the potentiometer
 int potpin2 = 1;
 int potpin3 = 2;
 int potpin4 = 3;
@@ -20,7 +20,7 @@ int potpin6 = 5;
 int potpin7 = 6;
 int potpin8 = 7;
 
-int val1;    // variable to read the value from the analog pin
+int val1; // variable to read the value from the analog pin
 int val2;
 int val3;
 int val4;
@@ -29,65 +29,77 @@ int val6;
 int val7;
 int val8;
 
+int pinButton = 9; //the pin where we connect the button
+
 void setup()
 {
+pinMode(pinButton, INPUT);
 Serial.begin(9600);
- //put in servo controller code here
+//put in servo controller code here
+
 }
 
-void loop() 
-{ 
-  val1 = analogRead(potpin1);            // reads the value of the potentiometer (value between 0 and 1023)
-  val2 = analogRead(potpin2);
-  val3 = analogRead(potpin3);
-  val4 = analogRead(potpin4);
-  val5 = analogRead(potpin5);
-  val6 = analogRead(potpin6);
-  val7 = analogRead(potpin7);
-  val8 = analogRead(potpin8);
-  
-  val1 = map(val1, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180) 
-  val2 = map(val2, 0, 1023, 0, 180); 
-  val3 = map(val3, 0, 1023, 0, 180); 
-  val4 = map(val4, 0, 1023, 0, 180); 
-  val5 = map(val5, 0, 1023, 0, 180); 
-  val6 = map(val6, 0, 1023, 0, 180); 
-  val7 = map(val7, 0, 1023, 0, 180); 
-  val8 = map(val8, 0, 1023, 0, 180); 
-  
-  Serial.print("Servo 1:");       
-  Serial.println(val1);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 2:");       
-  Serial.println(val2);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 3:");       
-  Serial.println(val3);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 4:");       
-  Serial.println(val4);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 5:");       
-  Serial.println(val5);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 6:");       
-  Serial.println(val6);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 7:");       
-  Serial.println(val7);
-  Serial.print("\t"); 
-  
-    Serial.print("Servo 8:");       
-  Serial.println(val8);
-  Serial.print("\t"); 
+void loop()
+{
+int stateButton = digitalRead(pinButton); //read the state of the button
 
-  //move servos based on the above numbers
-  myservo.write(val);                  // sets the servo position according to the scaled value 
-  delay(15);                           // waits for the servo to get there 
+val1 = analogRead(potpin1); // reads the value of the potentiometer (value between 0 and 1023)
+val2 = analogRead(potpin2);
+val3 = analogRead(potpin3);
+val4 = analogRead(potpin4);
+val5 = analogRead(potpin5);
+val6 = analogRead(potpin6);
+val7 = analogRead(potpin7);
+val8 = analogRead(potpin8);
+val1 = map(val1, 0, 1023, 0, 180); // scale it to use it with the servo (value between 0 and 180)
+val2 = map(val2, 0, 1023, 0, 180);
+val3 = map(val3, 0, 1023, 0, 180);
+val4 = map(val4, 0, 1023, 0, 180);
+val5 = map(val5, 0, 1023, 0, 180);
+val6 = map(val6, 0, 1023, 0, 180);
+val7 = map(val7, 0, 1023, 0, 180);
+val8 = map(val8, 0, 1023, 0, 180);
+
+ if(stateButton == 1) { //if is pressed
+Serial.print("Servo 1:");
+Serial.println(val1);
+Serial.print("\t");
+
+Serial.print("Servo 2:");
+Serial.println(val2);
+Serial.print("\t");
+
+Serial.print("Servo 3:");
+Serial.println(val3);
+Serial.print("\t");
+
+Serial.print("Servo 4:");
+Serial.println(val4);
+Serial.print("\t");
+
+Serial.print("pinbutton:");
+Serial.println(stateButton);
+Serial.print("\t");
+//
+//Serial.print("Servo 5:");
+//Serial.println(val5);
+//Serial.print("\t");
+//
+//Serial.print("Servo 6:");
+//Serial.println(val6);
+//Serial.print("\t");
+//
+//Serial.print("Servo 7:");
+//Serial.println(val7);
+//Serial.print("\t");
+//
+//Serial.print("Servo 8:");
+//Serial.println(val8);
+//Serial.print("\t");
+
+ }
+
+//move servos based on the above numbers
+//myservo.write(val); // sets the servo position according to the scaled value
+delay(150); // waits for the servo to get there
 } 
