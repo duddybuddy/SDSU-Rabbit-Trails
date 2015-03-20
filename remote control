@@ -31,6 +31,7 @@ int val8;
 
 void setup()
 {
+Serial.begin(9600);
  //put in servo controller code here
 }
 
@@ -45,13 +46,48 @@ void loop()
   val7 = analogRead(potpin7);
   val8 = analogRead(potpin8);
   
-  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180) 
-  val = map(val, 0, 1023, 0, 180); 
-  val = map(val, 0, 1023, 0, 180); 
-  val = map(val, 0, 1023, 0, 180); 
-  val = map(val, 0, 1023, 0, 180); 
-  val = map(val, 0, 1023, 0, 180); 
-  val = map(val, 0, 1023, 0, 180); 
+  val1 = map(val1, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180) 
+  val2 = map(val2, 0, 1023, 0, 180); 
+  val3 = map(val3, 0, 1023, 0, 180); 
+  val4 = map(val4, 0, 1023, 0, 180); 
+  val5 = map(val5, 0, 1023, 0, 180); 
+  val6 = map(val6, 0, 1023, 0, 180); 
+  val7 = map(val7, 0, 1023, 0, 180); 
+  val8 = map(val8, 0, 1023, 0, 180); 
+  
+  Serial.print("Servo 1:");       
+  Serial.println(val1);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 2:");       
+  Serial.println(val2);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 3:");       
+  Serial.println(val3);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 4:");       
+  Serial.println(val4);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 5:");       
+  Serial.println(val5);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 6:");       
+  Serial.println(val6);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 7:");       
+  Serial.println(val7);
+  Serial.print("\t"); 
+  
+    Serial.print("Servo 8:");       
+  Serial.println(val8);
+  Serial.print("\t"); 
+
+  //move servos based on the above numbers
   myservo.write(val);                  // sets the servo position according to the scaled value 
   delay(15);                           // waits for the servo to get there 
 } 
